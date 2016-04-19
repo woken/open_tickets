@@ -1,0 +1,22 @@
+= form_for @company, html: { class: 'well form-horizontal'} do |f|
+  - if @company.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@company.errors.count, "error")} prohibited this company from being saved:"
+      ul
+        - @company.errors.full_messages.each do |message|
+          li = message
+
+  fieldset
+    .form-group
+      = f.label :name, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :name, class: 'form-control'
+    .form-group
+      .col-xs-10.col-xs-offset-2
+        = f.submit class: 'btn btn-primary'
+        | 
+        - if @company.persisted?
+          = link_to 'Show', @company, class: 'btn btn-info'
+          | 
+        = link_to 'Back', companies_path, class: 'btn btn-raised btn-default'
+

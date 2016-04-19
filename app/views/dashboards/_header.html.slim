@@ -1,0 +1,5 @@
+.row
+  h1 Tickets Charts
+  .col-xs-12
+    h2 Choose a company
+    = select_tag :company, options_from_collection_for_select(Company.joins(:tickets).where.not(tickets: { id: nil }).uniq, :id, :name, params[:id]), class: 'form-control', include_blank: true, id: 'select-dashboard-company'

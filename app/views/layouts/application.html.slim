@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title
+      | Tickets
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag "https://www.google.com/jsapi"
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  body
+    - if current_user.present?
+      .navbar.navbar-inverse
+        .container
+          .navbar-header
+            button.navbar-toggle data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button" 
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand href="javascript:void(0)"
+              = image_tag('4talent-logo-white.png', style: 'height: 30px;')
+          .navbar-collapse.collapse.navbar-responsive-collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                = link_to 'Tickets', tickets_path
+              li
+                = link_to 'Dashboard', dashboards_path
+              li.dropdown
+                a.dropdown-toggle data-target="#" data-toggle="dropdown" href="bootstrap-elements.html" 
+                  | Config
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    = link_to 'Companies', companies_path
+                  li
+                    = link_to 'Issue Types', issue_types_path
+                  li
+                    = link_to 'Tags', tags_path
+              li
+                = link_to 'Close session', destroy_user_session_path, method: :delete
+
+    .container
+      = yield

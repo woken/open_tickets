@@ -1,0 +1,25 @@
+.row
+  .col-xs-12
+    .well.form-horizontal
+      fieldset
+        .form-group
+          .col-xs-12
+            ul.breadcrumb
+              li
+                = link_to "Companies", companies_path
+              li Show
+            
+        - unless notice.nil?
+          .form-group
+            p#notice = notice
+
+        .form-group
+          label.col-xs-2.text-right Name
+          .col-xs-10.border-bottom-1px
+            = @company.name
+
+        .form-group
+          .col-xs-10.col-xs-offset-2
+            = link_to 'Edit', edit_company_path(@company), class: 'btn btn-primary'
+            |  
+            = link_to 'Back', companies_path, class: 'btn btn-info'

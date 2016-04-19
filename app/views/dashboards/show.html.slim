@@ -1,0 +1,34 @@
+= render partial: 'header'
+
+.row
+  .col-xs-12
+    h2
+      | Tickets by 
+      b Status
+    = column_chart Ticket.where(company: @company).group(:aasm_state).count
+
+.row
+  .col-xs-12
+    h2
+      | Tickets by 
+      b Issue type
+    = column_chart Ticket.where(company: @company).joins(:issue_type).group('issue_types.name').count
+
+.row
+  .col-xs-6
+    h2
+      | Tickets by 
+      b Created by
+    = pie_chart Ticket.where(company: @company).joins(:created_by).group('users.email').count
+  .col-xs-6
+    h2
+      | Tickets by 
+      b Notified by
+    = pie_chart Ticket.where(company: @company).joins(:notified_by).group('users.email').count
+
+.row
+  .col-xs-12
+    h2
+      | Tickets by 
+      b Tags
+    = pie_chart Ticket.where(company: @company).joins(:tags).group('tags.name').count

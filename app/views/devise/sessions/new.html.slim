@@ -1,0 +1,35 @@
+.row
+  .col-xs-6.col-xs-offset-3.margin-top-80px
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal well' }) do |f|
+      fieldset
+        .form-group
+          .col-xs-12.text-center
+            = image_tag('4talent-logo.png', style: 'height: 30px;')
+            h2 Tickets System
+            hr
+        .form-group
+          .col-xs-8.col-xs-offset-4
+            h3 Log in
+        .form-group
+          = f.label :email, class: 'col-xs-4 control-label'
+          .col-xs-8
+            = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'john.doe@gmail.com'
+
+        .form-group
+          = f.label :password, class: 'col-xs-4 control-label'
+          .col-xs-8
+            = f.password_field :password, autocomplete: "off", class: 'form-control'
+
+        - if devise_mapping.rememberable? 
+          .form-group
+            = f.label :remember_me, class: 'col-xs-4 control-label'
+            .col-xs-8
+              = f.check_box :remember_me, class: 'form-control'
+
+        .form-group
+          .col-xs-8.col-xs-offset-4
+            = f.submit "Log in", class: 'btn btn-primary'
+
+        .form-group
+          .col-xs-8.col-xs-offset-4
+            = render "devise/shared/links"

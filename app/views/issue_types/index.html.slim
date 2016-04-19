@@ -1,0 +1,23 @@
+.row
+  .col-xs-12.well
+    h1 Listing issue_types
+
+    table.table.table-hover
+      thead
+        tr
+          th Name
+          th
+          th
+          th
+
+      tbody
+        - @issue_types.each do |issue_type|
+          tr
+            td = issue_type.name
+            td = link_to 'Show', issue_type
+            td = link_to 'Edit', edit_issue_type_path(issue_type)
+            td = link_to 'Destroy', issue_type, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+    br
+
+    = link_to 'New Issue type', new_issue_type_path, class: 'btn btn-primary'

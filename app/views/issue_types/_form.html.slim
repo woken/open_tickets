@@ -1,0 +1,22 @@
+= form_for @issue_type, html: { class: 'well form-horizontal' } do |f|
+  - if @issue_type.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@issue_type.errors.count, "error")} prohibited this issue type from being saved:"
+      ul
+        - @issue_type.errors.full_messages.each do |message|
+          li = message
+
+  fieldset
+    .form-group
+      = f.label :name, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :name, class: 'form-control'
+
+    .form-group
+      .col-xs-10.col-xs-offset-2
+        = f.submit class: 'btn btn-primary'
+        |  
+        - if @issue_type.persisted?
+          = link_to 'Show', @issue_type, class: 'btn btn-info'
+          |  
+        = link_to 'Back', issue_types_path, class: 'btn btn-raised btn-default'

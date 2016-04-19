@@ -1,0 +1,13 @@
+.col-xs-10.col-xs-offset-2.nested-fields
+  = f.inputs do
+    - if f.object.persisted?
+      .row
+        .col-xs-2
+          = link_to f.object.content_url, class: 'fancybox', rel: "form" do
+            = image_tag(f.object.content_thumb_url, style: 'width: 100%;')
+        .col-xs-10
+          = f.file_field :content, class: 'form-control', readonly: '', placeholder: 'Browse...'
+          = link_to_remove_association "remove picture", f, class: 'btn btn-danger'
+    - else
+      = f.file_field :content, class: 'form-control', readonly: '', placeholder: 'Browse...'
+      = link_to_remove_association "remove picture", f, class: 'btn btn-danger'

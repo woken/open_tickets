@@ -1,0 +1,81 @@
+= semantic_form_for(@ticket, html: { class: 'well form-horizontal' }) do |f|
+  fieldset
+    - if @ticket.errors.any?
+      .form-group
+        .col-xs-10.col-xs-offset-2
+          #error_explanation
+            h2 = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
+            ul
+              - @ticket.errors.full_messages.each do |message|
+                li = message
+
+    - if @ticket.persisted?
+      .form-group
+        = f.label :company, class: 'col-xs-2 control-label'
+        .col-xs-10
+          .form-control
+            = @ticket.company_name
+
+      .form-group
+        = f.label :created_by, class: 'col-xs-2 control-label'
+        .col-xs-10
+          .form-control
+            = @ticket.created_by.email
+
+      .form-group
+        = f.label :notified_by_id, class: 'col-xs-2 control-label'
+        .col-xs-10
+          .form-control
+            = @ticket.notified_by.email
+
+    - else
+      .form-group
+        = f.label :company, class: 'col-xs-2 control-label'
+        .col-xs-10
+          = f.select :company_id, Company.all.collect {|p| [ p.name, p.id ] }, {}, class: 'form-control'
+
+      .form-group
+        = f.label :notified_by_id, class: 'col-xs-2 control-label'
+        .col-xs-7
+          = react_component('UserSelect', model: 'ticket', attr: 'notified_by_id', users: User.all.map {|p| {email: p.email, id: p.id} }, klass: 'form-control chosen-select')
+        .col-xs-3
+          button.btn.btn-info type="button" data-toggle="modal" data-target="#new_user" style='margin: 0px;' Create User
+
+    .form-group
+      = f.label :title, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :title, class: 'form-control'
+
+    .form-group
+      = f.label :description, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_area :description, class: 'form-control', rows: '10'
+
+    .form-group
+      = f.label :tag_ids, class: 'col-xs-2 control-label'
+      .col-xs-7
+        = react_component('ChosenTagSelect', model: 'ticket', _selected: @ticket.tag_ids, attr: 'tag_ids', tags: Tag.all.map {|p| {name: p.name, id: p.id} }, klass: 'form-control chosen-select')
+      .col-xs-3
+        button.btn.btn-info type="button" data-toggle="modal" data-target="#new_tag" style='margin: 0px;' Create Tag
+
+    .form-group
+      = f.label :pictures, class: 'col-xs-2 control-label'
+      .col-xs-10 &nbsp;
+      = f.semantic_fields_for :pictures do |picture|
+        = render 'picture_fields', f: picture
+      .col-xs-10.col-xs-offset-2.text-right
+
+    .form-group
+      .col-xs-10.col-xs-offset-2
+        = f.submit class: 'btn btn-primary'
+        |  
+        = link_to_add_association 'add picture', f, :pictures, class: 'btn btn-info'
+        |  
+        - if @ticket.persisted?
+          = link_to 'Show', @ticket, class: 'btn btn-warning'
+          |  
+        = link_to 'Back', tickets_path, class: 'btn btn-raised btn-default'
+
+= react_component('ModalUserForm')
+
+= react_component('ModalTagForm')

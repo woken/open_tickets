@@ -1,0 +1,41 @@
+= render partial: 'header'
+
+.row
+  .col-xs-12
+    h2
+      | Tickets by 
+      b Company
+    = column_chart Ticket.joins(:company).group('companies.name').count
+
+.row
+  .col-xs-12
+    h2
+      | Tickets by 
+      b Month
+    = area_chart Ticket.group_by_week(:created_at).count
+
+.row
+  .col-xs-6
+    h2
+      | Tickets by 
+      b Created by
+    = pie_chart Ticket.joins(:created_by).group('users.email').count
+  .col-xs-6
+    h2
+      | Tickets by 
+      b Notified by
+    = pie_chart Ticket.joins(:notified_by).group('users.email').count
+    
+.row
+  .col-xs-12
+    h2
+      | Tickets by 
+      b Status
+    = column_chart Ticket.group(:aasm_state).count
+    
+.row
+  .col-xs-12
+    h2
+      | Tickets by 
+      b Tags
+    = pie_chart Ticket.joins(:tags).group('tags.name').count

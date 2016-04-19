@@ -1,0 +1,43 @@
+@each $i in center, left, right {
+  .text-#{$i} {
+    text-align: $i;
+  }
+}
+
+@each $i in center, left, right, bottom {
+  .border-#{$i}-1px {
+    border-#{$i}: 1px solid #ddd;
+  }
+}
+
+@for $i from 1 through 10 {
+  .margin-top-#{$i * 10}px {
+    margin-top: $i * 10px;
+  }
+
+  .margin-bottom-#{$i * 10}px {
+    margin-bottom: $i * 10px;
+  }
+
+  .margin-left-#{$i * 10}px {
+    margin-left: $i * 10px;
+  }
+
+  .margin-right-#{$i * 10}px {
+    margin-right: $i * 10px;
+  }
+}
+
+fieldset.inputs ol {
+  padding: 0px;
+}
+
+.padding-0 {
+  padding: 0px;
+}
+
+ul.without-dots {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
