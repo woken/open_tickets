@@ -3,17 +3,27 @@
   $ gem install bundle
   $ bundle install
   $ ...
+  $ vim conf/database.yml
+  // create database 
+  $ rake db:migrate
+
+  // create users by rails console
 
 == Temas pendientes
 
 === Integración con GitHub
 
 Debe integrar los tickets de la aplicación con GitHub {\[1\]}[https://developer.github.com/v3/] para automatizar la creación de Pull request cada vez que se genere un Ticket en la plataforma.
-Una vez el ticket creado, este debe mostrar el link, estado y los comentarios del pull request de Github.
+Una vez el ticket creado, se debe mostrar el link, estado y los comentarios del pull request creado en Github.
 
 {\[1\] https://developer.github.com/v3/}[https://developer.github.com/v3/]
 
-- El sistema de tickets necesita configurarse para funcionar con un sólo repositorio de Github.
+- La configuración sobre que repositorio de github utilizar debe ser guardada en el modelo Company.
 - El uso de tests no es obligatorio, pero altamente recomendado.
 
 === Mejorar vista de listado de tickets
+
+- Permitir al usuario ordenar por columnas
+- Agregar filtros; filtrar tickets por "Empresa", "Creador", "Abiertos" y "Cerrados" 
+
+

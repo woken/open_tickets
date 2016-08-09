@@ -121,6 +121,7 @@ GEM
       railties (>= 3.1.0, < 5.0)
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
+    git (1.3.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     groupdate (2.5.3)
@@ -286,6 +287,7 @@ DEPENDENCIES
   factory_girl_rails
   fancybox2-rails
   formtastic
+  git
   groupdate
   jbuilder (~> 2.0)
   jquery-rails
@@ -304,4 +306,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

@@ -12,6 +12,7 @@ class Ticket < ActiveRecord::Base
   has_many :tickets_tags, dependent: :destroy
   has_many :tags, through: :tickets_tags
 
+  after_create :create_pull_request
   attr_accessor :new_state
   attr_accessor :action_user
 
@@ -100,5 +101,20 @@ class Ticket < ActiveRecord::Base
 
   def change_status
     self.send(self.new_state)
+  end
+
+  def branch_name
+    "issue/#{id}-#{title.gsub(/\s+/, '_')}"
+  end
+
+  def create_pull_request
+    git = company.get_git
+    # TODO: Use develop branch instead of master as base
+    # creates branch
+    branch = git.branch(branch_name)
+    branch.create 
+    # push branch to origin
+    git.push('origin', branch_name)
+    return true
   end
 end
