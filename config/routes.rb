@@ -24,6 +24,21 @@ Rails.application.routes.draw do
 
   resources :dashboards, only: [:index, :show]
 
+  namespace :api do
+    namespace :v1 do
+      resources :company do
+        collection do
+          get 'get_companys'
+        end
+      end
+      resources :ticket do
+        collection do
+          get 'get_tickets'
+        end
+      end
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

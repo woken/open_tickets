@@ -9,10 +9,6 @@
 
   // create users by rails console
 
-== Configuración de un repositorio git dentro de Company
-- Para evitar autenticación simple por http, guardar dirección del repositorio con el formato: git@github.com:usuario/repo
-- Si el repositorio ya fue creado dentro de GIT_DIR/repository_name, deberás actualizar manualmente la configuración de git dentro del repositorio para que use ssh.
-
 == Temas pendientes
 
 === Integración con GitHub
@@ -25,13 +21,9 @@ Una vez el ticket creado, se debe mostrar el link, estado y los comentarios del 
 - La configuración sobre que repositorio de github utilizar debe ser guardada en el modelo Company.
 - El uso de tests no es obligatorio, pero altamente recomendado.
 
-=== Nueva vista de listado de tickets
+=== Mejorar vista de listado de tickets
+
 - Permitir al usuario ordenar por columnas
 - Agregar filtros; filtrar tickets por "Empresa", "Creador", "Abiertos" y "Cerrados" 
-- Preferible el uso de AngularJS o ReactJS.
 
-=== API
-- Add JSON api endpoints inside namespace /api/v1/
-  - Company CRUD
-  - Tickets CRUD
-- Add OAuth2 authorization to access the API.
+

@@ -12,8 +12,8 @@ default: &default
 
 development:
   <<: *default
-  database: open_tickets_development
-  username: root
+  database: local_db
+  username: postgres
   password: nogamenolife
 
 # Warning: The database defined as "test" will be erased and
@@ -28,3 +28,6 @@ test:
 production:
   <<: *default
   database: tickets_production
+
+
+# User.create(:email => 'saumedin@gmail.com', :encrypted_password => '123456', :sign_in_count => '0', :created_at => '2014-07-09 00:41:08',:updated_at => '2014-07-09 00:41:08')
