@@ -28,7 +28,7 @@ app_ticket.factory("get_tickets", function($http) {
 
 			var promise = $http({
 				method: 'GET',
-				url: 'localhost:3000/api/v1/ticket/get_tickets',
+				url: '/api/v1/ticket/get_tickets',
 				params: params
 			});
 			promise.success(function(response) {
