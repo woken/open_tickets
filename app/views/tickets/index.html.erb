@@ -1,0 +1,78 @@
+<!--
+.row
+  .col-xs-12.well
+    h1 Listing tickets
+
+    div [ng-app]
+      div ng-controller="ticket_ctrl"
+        table.table.table-hover
+          thead
+            tr
+              th Company
+              th Notified by
+              th Created by
+              th Aasm state
+              th Title
+              th Description
+              th Closed at
+              th
+              th
+              th
+
+          tbody
+            - @tickets.each do |ticket|
+              tr
+                td = ticket.company_name
+                td = ticket.notified_by.email
+                td = ticket.created_by.email
+                td = ticket.aasm_state
+                td = ticket.title
+                td = ticket.description
+                td = ticket.closed_at
+                td = link_to 'Show', ticket
+                td = link_to 'Edit', edit_ticket_path(ticket)
+                td = link_to 'Destroy', ticket, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+        br
+
+        = link_to 'New Ticket', new_ticket_path, class: 'btn btn-primary'
+-->
+
+<div class=row>
+
+  <div ng-app='app_ticket'>
+    <div ng-controller="ticket_ctrl">
+
+      {{lala}}
+
+      <table datatable="ng" id="list_special_case" class="table table-striped table-hover table-condensed" style="white-space: nowrap" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th class="small">#</th>
+            <th class="small"><i class="fa fa-globe"></i> Company</th>
+            <th class="small"><i class="fa fa-calendar"></i> Notified by</th>
+            <th class="small"><i class="fa fa-calendar"></i> Created by</th>
+            <th class="small"><i class="fa fa-calendar"></i> Aasm state</th>
+            <th class="small"><i class="fa fa-calendar"></i> Title</th>
+            <th class="small"><i class="fa fa-calendar"></i> Description</th>
+            <th class="small"><i class="fa fa-calendar"></i> Closed at</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in list_tickets">
+            <td class="small">{{ $index + 1 }}</td>
+            <td class="small">{{ x.company_name }}</td>
+            <td class="small">{{ x.notified_by_id }}</td>
+            <td class="small">{{ x.created_by_id }}</td>
+            <td class="small">{{ x.aasm_state }}</td>
+            <td class="small">{{ x.title }}</td>
+            <td class="small">{{ x.description }}</td>
+            <td class="small">{{ x.closed_at }}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+  
+</div>

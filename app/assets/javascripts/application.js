@@ -20,5 +20,8 @@
 //= require components
 //= require chosen-jquery
 //= require highcharts
+//= require angular.min
+//= require angular-datatables.min
+//= require jquery.dataTables.min
 //= require chartkick
 //= require_tree .
